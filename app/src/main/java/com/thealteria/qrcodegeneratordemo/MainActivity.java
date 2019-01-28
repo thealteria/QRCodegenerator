@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     public void onScan(View view) {
@@ -28,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Intent intent = new Intent(getApplicationContext(), activity);
             startActivity(intent);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.d(TAG, "onIntent: " + e.getMessage());
         }
     }

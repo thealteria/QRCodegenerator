@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,6 @@ public class GenerateActivity extends AppCompatActivity {
     private static final String TAG = "GenerateActivity";
     private EditText editText;
     private ImageView qrCodeImg;
-    //private TextView imageText;
     private Spinner vehiclesScroll;
 
     @Override
@@ -43,7 +43,6 @@ public class GenerateActivity extends AppCompatActivity {
 
         editText = findViewById(R.id.editText);
         qrCodeImg = findViewById(R.id.qrCodeImg);
-        //imageText = findViewById(R.id.imageText);
         vehiclesScroll = findViewById(R.id.vehiclesScroll);
 
         vehiclesSpinner();
@@ -69,12 +68,14 @@ public class GenerateActivity extends AppCompatActivity {
 
     private void generateQRCode(String text) {
         try {
+            int qrWidth = 300;
+            int qrHeight = 300;
             Map<EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap<>();
             hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,
-                    500, 500, hintMap);
+                    qrWidth, qrHeight, hintMap);
             //BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             //Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
 
@@ -86,8 +87,12 @@ public class GenerateActivity extends AppCompatActivity {
             for (int y = 0; y < height; y++) {
                 int offset = y * width;
                 for (int x = 0; x < width; x++) {
-                    //for black and white
-                    pixels[offset + x] = bitMatrix.get(x, y) ? BLACK : WHITE;
+                    //setting color from graphics
+                    pixels[offset + x] = bitMatrix.get(x, y) ? BLACK   : WHITE;
+
+                    //setting color from color resource
+//                    pixels[offset + x] = bitMatrix.get(x, y) ? ResourcesCompat.getColor(getResources(),
+//                            R.color.orange,null)   : WHITE;
                 }
             }
 
@@ -130,10 +135,10 @@ public class GenerateActivity extends AppCompatActivity {
         int canvasHeight = canvas.getHeight();
         canvas.drawBitmap(qrcode, new Matrix(), null);
 
-        //Bitmap resizeLogo = Bitmap.createScaledBitmap(logo, canvasWidth / 5, canvasHeight / 5, true);
-        int centreX = (canvasWidth - logo.getWidth()) / 2;
-        int centreY = (canvasHeight - logo.getHeight()) / 2;
-        canvas.drawBitmap(logo, centreX, centreY, null);
+        Bitmap resizeLogo = Bitmap.createScaledBitmap(logo, canvasWidth / 5, canvasHeight / 5, true);
+        int centreX = (canvasWidth - resizeLogo.getWidth()) / 2;
+        int centreY = (canvasHeight - resizeLogo.getHeight()) / 2;
+        canvas.drawBitmap(resizeLogo, centreX, centreY, null);
         return combined;
     }
 }

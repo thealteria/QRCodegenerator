@@ -26,12 +26,4 @@ public class ScannedDataActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: " + e.getMessage());
         }
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Intent intent = new Intent(getApplicationContext(), CaptureActPortrait.class);
-        startActivity(intent);
-    }
 }
