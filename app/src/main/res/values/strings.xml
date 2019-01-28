@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">QR Code generator Demo</string>
+    <string name="qrcode">QRCode</string>
+    <string-array name="vehicles_arrays">
+        <item>Choose your vehicle..</item>
+        <item>Sedan,hatchback Cars(Manual Gear)</item>
+        <item>Sedan,hatchback Cars(Automatic)</item>
+        <item>Luxury Cars(BMW, Audi, etc)</item>
+    </string-array>
+</resources>
