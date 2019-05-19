@@ -1,2 +1,2 @@
-# QRCodegeneratorDemo
+# QRCodegenerator
 Simple application to scan and genrate QR codes with logo inside.
