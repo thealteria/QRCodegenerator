@@ -1,12 +1,10 @@
 package com.thealteria.qrcodegeneratordemo;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.util.Objects;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ScannedDataActivity extends AppCompatActivity {
 

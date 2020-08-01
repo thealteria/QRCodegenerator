@@ -6,8 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -55,7 +56,7 @@ public class GenerateActivity extends AppCompatActivity {
         String text = nameText + "\n" + vehiclesText;
 
 
-        if (editText.length() == 0 || nameText.isEmpty()) {
+        if (editText.length() == 0 || TextUtils.isEmpty(editText.getText())) {
             toast("Please enter your name!", Toast.LENGTH_SHORT);
         }
         if (sampleVeh.equals("Choose your vehicle..")) {
@@ -88,7 +89,7 @@ public class GenerateActivity extends AppCompatActivity {
                 int offset = y * width;
                 for (int x = 0; x < width; x++) {
                     //setting color from graphics
-                    pixels[offset + x] = bitMatrix.get(x, y) ? BLACK   : WHITE;
+                    pixels[offset + x] = bitMatrix.get(x, y) ? BLACK : WHITE;
 
                     //setting color from color resource
 //                    pixels[offset + x] = bitMatrix.get(x, y) ? ResourcesCompat.getColor(getResources(),
